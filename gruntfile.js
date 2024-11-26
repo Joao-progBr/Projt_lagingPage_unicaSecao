@@ -95,7 +95,17 @@ module.exports = function(grunt){
                 }
             }
         },
-        clean: ['prebuild']
+        clean: ['prebuild'],
+        imagemin: {
+            dynamic: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/images/',
+                    src: ['**/*.{png,jpg,jpeg,gif,svg}'],
+                    dest: 'dist/images/'
+                }]
+            }
+        },
     })
 
 
@@ -105,7 +115,8 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-replace')
     grunt.loadNpmTasks('grunt-contrib-htmlmin')
     grunt.loadNpmTasks('grunt-contrib-clean')
+    grunt.loadNpmTasks('grunt-contrib-imagemin')
 
     grunt.registerTask('default', ['watch']),
-    grunt.registerTask('build', ['sass:prod', 'htmlmin:dist', 'replace:dist', 'clean' ])
+    grunt.registerTask('build', ['sass:prod', 'htmlmin:dist', 'replace:dist', 'imagemin', 'clean' ])
 }
