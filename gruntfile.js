@@ -1,5 +1,6 @@
 const { option } = require("grunt");
 
+
 module.exports = function(grunt){
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -17,6 +18,7 @@ module.exports = function(grunt){
         sass: {
             dev: {
               options: {
+                implementation: require('sass'),
                 style: 'expanded', // Mais legível, útil para desenvolvimento
                 },
               files: {
@@ -25,6 +27,7 @@ module.exports = function(grunt){
             },
             prod: {
               options: {
+                implementation: require('sass'),
                 style: 'compressed', 
                 sourcemap: false,    
               },
@@ -96,8 +99,8 @@ module.exports = function(grunt){
     })
 
 
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-sass');
+    // grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-contrib-watch')
     grunt.loadNpmTasks('grunt-replace')
     grunt.loadNpmTasks('grunt-contrib-htmlmin')
